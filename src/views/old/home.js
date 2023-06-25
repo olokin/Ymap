@@ -13,7 +13,7 @@ export default {
       dialogVisible: false,
       markName: '目标',
       finshName: '已完成',
-      scoreName: '已完成',
+      scoreName: '得分',
       behaviorName: '行为',
       leading: '领先指标',
       dialogTitle: '明细列表',
@@ -127,17 +127,17 @@ export default {
 
       if (width < 900) {
         this.isMobile = true
-        // dom.style.width = width - 30 + 'px'
-        // dom.style.height = width * 1.3 - 30 + 'px'
-        // dom.style.padding = '20px 10px'
+        dom.style.width = width - 30 + 'px'
+        dom.style.height = width * 1.3 - 30 + 'px'
+        dom.style.padding = '20px 10px'
       } else {
-        // const wid = document.body.clientWidth
-        // const hei = document.body.clientHeight
-        // let cal = Math.min(wid, hei) - 123
-        // if (cal > 1000) cal = 1000
+        const wid = document.body.clientWidth
+        const hei = document.body.clientHeight
+        let cal = Math.min(wid, hei) - 123
+        if (cal > 1000) cal = 1000
 
-        // dom.style.width = cal + 'px'
-        // dom.style.height = cal + 'px'
+        dom.style.width = cal + 'px'
+        dom.style.height = cal + 'px'
       }
 
       this.$nextTick(() => {
@@ -514,7 +514,7 @@ export default {
         title: {
           text: this.leading + this.suffixName,
           top: 'top',
-          right: '12px',
+          left: 'right',
           textStyle: {
             fontSize: 28,
           },

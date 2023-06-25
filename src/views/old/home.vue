@@ -41,69 +41,8 @@
         </div>
       </section>
 
-      <div class="flex-box">
-        <div id="main"></div>
-      </div>
-      <div class="flex-box-table">
-        <el-table :data="listData" size="small" border :span-method="objectSpanMethod" :row-class-name="tableRowClassName">
-          <el-table-column>
-            <template slot="header" slot-scope="scope">
-              <el-input size="small" v-if="detailForm.isEdit1" v-model="detailForm.headName1" placeholder="" @blur="editHandler(1, false)" />
-              <template v-else>
-                <div class="head-name">{{ detailForm.headName1 }}</div>
-                <i class="el-icon-edit" @click="editHandler(1)"></i>
-              </template>
-            </template>
-            <template slot-scope="scope">
-              <el-input size="small" v-model="scope.row.name" placeholder="" @blur="changeName(scope.row)"></el-input>
-            </template>
-          </el-table-column>
-          <el-table-column>
-            <template slot="header" slot-scope="scope">
-              <el-input size="small" v-if="detailForm.isEdit2" v-model="detailForm.headName2" placeholder="" @blur="editHandler(2, false)" />
-              <template v-else>
-                <div class="head-name">{{ detailForm.headName2 }}</div>
-                <i class="el-icon-edit" @click="editHandler(2)"></i>
-              </template>
-            </template>
-            <template slot-scope="scope">
-              <el-input-number
-                size="small"
-                v-model="scope.row.mark"
-                :controls="false"
-                :min="0"
-                @blur="changeName2(scope.row)"
-              ></el-input-number>
-            </template>
-          </el-table-column>
-          <el-table-column>
-            <template slot="header" slot-scope="scope">
-              <el-input size="small" v-if="detailForm.isEdit4" v-model="detailForm.headName4" placeholder="" @blur="editHandler(4, false)" />
-              <template v-else>
-                <div class="head-name">{{ detailForm.headName4 }}</div>
-                <i class="el-icon-edit" @click="editHandler(4)"></i>
-              </template>
-            </template>
-            <template slot-scope="scope">
-              <el-input-number
-                size="small"
-                v-model="scope.row.score"
-                :controls="false"
-                :min="0"
-              ></el-input-number>
-            </template>
-          </el-table-column>
-        </el-table>
-
-        <div style="text-align: center">
-          <el-button size="small" @click="cancel">取消</el-button>
-          <el-button size="small" type="primary" @click="submitForm">确定</el-button>
-          <el-button size="small" type="primary" @click="downExcel">导出Excel</el-button>
-        </div>
-      </div>
-
+      <div><div id="main"></div></div>
       <el-button
-        v-if="0"
         type="primary"
         size="medium"
         :class="isMobile ? '' : 'fixed-btn'"

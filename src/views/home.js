@@ -13,7 +13,7 @@ export default {
       dialogVisible: false,
       markName: '目标',
       finshName: '已完成',
-      scoreName: '已完成',
+      scoreName: '本期完成',
       behaviorName: '行为',
       leading: '领先指标',
       dialogTitle: '明细列表',
@@ -105,17 +105,6 @@ export default {
         return false
       }
     },
-    getFinshNum() {
-      return (id) => {
-        const list = this.listData.filter(v => v.id === id)
-        const num = list.reduce((t, c) => {
-          t += c.score
-          return t
-        }, 0)
-
-        return num
-      }
-    }
   },
   created() {
     this.initPage()
@@ -396,26 +385,20 @@ export default {
     submitForm() {
       this.listData.forEach(v => {
         if (v.id === 1) {
-          const nn = this.getFinshNum(v.id)
-
           this.form.name1 = v.name
           this.form.orientation1 = v.mark
-          this.form.orientation2 = nn
-          v.finsh = nn
+          this.form.orientation2 = v.finsh
+          v.finsh = v.finsh
         } else if (v.id === 2) {
-          const nn = this.getFinshNum(v.id)
-
           this.form.name2 = v.name
           this.form.statistics1 = v.mark
-          this.form.statistics2 = nn
-          v.finsh = nn
+          this.form.statistics2 = v.finsh
+          v.finsh = v.finsh
         } else {
-          const nn = this.getFinshNum(v.id)
-
           this.form.name3 = v.name
           this.form.customer1 = v.mark
-          this.form.customer2 = nn
-          v.finsh = nn
+          this.form.customer2 = v.finsh
+          v.finsh = v.finsh
         }
       })
 

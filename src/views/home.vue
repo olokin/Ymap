@@ -76,6 +76,23 @@
               ></el-input-number>
             </template>
           </el-table-column>
+          <el-table-column align="center">
+            <template slot="header" slot-scope="scope">
+              <el-input size="small" v-if="detailForm.isEdit3" v-model="detailForm.headName3" placeholder="" @blur="editHandler(3, false)" />
+              <template v-else>
+                <div class="head-name">{{ detailForm.headName3 }}</div>
+                <i class="el-icon-edit" @click="editHandler(3)"></i>
+              </template>
+            </template>
+            <template slot-scope="scope">
+              <el-input-number
+                size="small"
+                v-model="scope.row.finsh"
+                :controls="false"
+                :min="0"
+              ></el-input-number>
+            </template>
+          </el-table-column>
           <el-table-column>
             <template slot="header" slot-scope="scope">
               <el-input size="small" v-if="detailForm.isEdit4" v-model="detailForm.headName4" placeholder="" @blur="editHandler(4, false)" />

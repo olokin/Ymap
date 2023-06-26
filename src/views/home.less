@@ -56,7 +56,7 @@ body {
           margin-bottom: 0;
         }
 
-        .el-form-item + .el-form-item {
+        .el-form-item+.el-form-item {
           margin-bottom: 20px;
         }
       }
@@ -69,36 +69,30 @@ body {
     }
 
     button {
-      margin-top: 20px !important;
+      margin-top: 10px !important;
     }
 
     .flex-box {
+      display: flex;
       flex: 1;
+      justify-content: center;
       width: 100%;
       min-height: 330px;
-      // overflow: hidden;
-      padding: 20px;
+      padding-top: 20px;
       box-sizing: border-box;
-      max-width: 600px;
     }
 
     .flex-box-table {
-      height: 300px;
+      height: 222px;
       width: 100%;
-      // overflow: hidden;
-      padding: 20px;
       box-sizing: border-box;
-      max-width: 600px;
+      max-width: 666px;
     }
 
     #main {
       width: 100%;
       height: 100%;
     }
-  }
-  
-  #main {
-    padding-left: 10px;
   }
 
   .table-dialog-box {
@@ -113,7 +107,7 @@ body {
     .upload-demo {
       display: inline-block;
       margin-left: 10px;
-      
+
       button {
         padding: 10px 20px;
         font-size: 14px;
@@ -128,26 +122,40 @@ body {
   }
 
   .el-table {
-    .el-table__row {
-      .cell {
-        padding: 0 2px !important;
+    .cell {
+      padding: 0 8px !important;
 
-        .el-input-number{
-          width: auto;
-        }
+      .el-input-number {
+        width: auto;
+      }
 
-        .new-beha {
-          color: #409EFF;
-          cursor: pointer;
-        }
+      .new-beha {
+        color: #409EFF;
+        cursor: pointer;
       }
     }
 
     .warning-row {
-      background: oldlace !important;
+      background: #91cc75 !important;
 
       td {
-        background: oldlace !important;
+        background: #91cc75 !important;
+      }
+    }
+
+    .warning-row2 {
+      background: #5470c6 !important;
+
+      td {
+        background: #5470c6 !important;
+      }
+    }
+
+    .warning-row3 {
+      background: #ee6666 !important;
+
+      td {
+        background: #ee6666 !important;
       }
     }
 
@@ -160,8 +168,8 @@ body {
         color: #409EFF;
         cursor: pointer;
       }
-    }   
-    
+    }
+
     .el-table__header {
       th {
         padding: 6px 0;
@@ -172,7 +180,7 @@ body {
         display: flex;
         align-items: center;
         padding: 0 4px;
-        height: 44px;
+        height: 32px;
 
         .el-icon-edit {
           margin-left: 6px;

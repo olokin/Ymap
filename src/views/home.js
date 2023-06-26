@@ -50,47 +50,47 @@ export default {
       return ({ row, column, rowIndex, columnIndex }) => {
         if ([0, 1, 2, 5].includes(columnIndex)) {
           if (row.id === 1) {
-            const len = this.listData.filter(v => v.id === 1).length
+            const len = this.listData.filter((v) => v.id === 1).length
 
             if (rowIndex === 0) {
               return {
                 rowspan: len,
-                colspan: 1
+                colspan: 1,
               }
             } else {
               return {
                 rowspan: 0,
-                colspan: 0
+                colspan: 0,
               }
             }
           } else if (row.id === 2) {
-            let inx = this.listData.map(o=>o.id).indexOf(2)
-            const len = this.listData.filter(v => v.id === 2).length
+            let inx = this.listData.map((o) => o.id).indexOf(2)
+            const len = this.listData.filter((v) => v.id === 2).length
 
             if (rowIndex === inx) {
               return {
                 rowspan: len,
-                colspan: 1
+                colspan: 1,
               }
             } else {
               return {
                 rowspan: 0,
-                colspan: 0
+                colspan: 0,
               }
             }
           } else {
-            let inx = this.listData.map(o=>o.id).indexOf(3)
-            const len = this.listData.filter(v => v.id === 3).length
+            let inx = this.listData.map((o) => o.id).indexOf(3)
+            const len = this.listData.filter((v) => v.id === 3).length
 
             if (rowIndex === inx) {
               return {
                 rowspan: len,
-                colspan: 1
+                colspan: 1,
               }
             } else {
               return {
                 rowspan: 0,
-                colspan: 0
+                colspan: 0,
               }
             }
           }
@@ -99,7 +99,7 @@ export default {
     },
     shoIcon() {
       return (id) => {
-        const len = this.listData.filter(v => v.id === id).length
+        const len = this.listData.filter((v) => v.id === id).length
 
         if (len > 1) return true
         return false
@@ -110,29 +110,32 @@ export default {
     this.initPage()
   },
   mounted() {
-    document.addEventListener('DOMContentLoaded', () => {
-      const width = document.body.clientWidth
-      const dom = document.querySelector('#main')
+    document.addEventListener(
+      'DOMContentLoaded',
+      () => {
+        const width = document.body.clientWidth
+        const dom = document.querySelector('#main')
 
-      if (width < 900) {
-        this.isMobile = true
-        // dom.style.width = width - 30 + 'px'
-        // dom.style.height = width * 1.3 - 30 + 'px'
-        // dom.style.padding = '20px 10px'
-      } else {
-        // const wid = document.body.clientWidth
-        // const hei = document.body.clientHeight
-        // let cal = Math.min(wid, hei) - 123
-        // if (cal > 1000) cal = 1000
+        if (width < 900) {
+          this.isMobile = true
+          dom.style.width = width - 30 + 'px'
+          // dom.style.height = width * 1.3 - 30 + 'px'
+          // dom.style.padding = '20px 10px'
+        } else {
+          const wid = document.body.clientWidth
+          const hei = document.body.clientHeight
+          let cal = Math.min(wid, hei) - 123
+          if (cal > 900) cal = 900
+          dom.style.width = cal + 'px'
+          // dom.style.height = cal + 'px'
+        }
 
-        // dom.style.width = cal + 'px'
-        // dom.style.height = cal + 'px'
-      }
-
-      this.$nextTick(() => {
-        this.init()
-      })
-    }, false)
+        this.$nextTick(() => {
+          this.init()
+        })
+      },
+      false
+    )
   },
   methods: {
     initPage() {
@@ -149,7 +152,7 @@ export default {
         this.listData = list
         this.detailForm = {
           ...this.detailForm,
-          ...infoObj
+          ...infoObj,
         }
 
         this.leading = infoObj.headName1
@@ -158,9 +161,9 @@ export default {
         this.scoreName = infoObj.headName4
         this.behaviorName = infoObj.headName5
 
-        const list1 = this.listData.filter(v => v.id === 1)
-        const list2 = this.listData.filter(v => v.id === 2)
-        const list3 = this.listData.filter(v => v.id === 3)
+        const list1 = this.listData.filter((v) => v.id === 1)
+        const list2 = this.listData.filter((v) => v.id === 2)
+        const list3 = this.listData.filter((v) => v.id === 3)
 
         this.form.name1 = list1[0].name
         this.form.name2 = list2[0].name
@@ -206,16 +209,16 @@ export default {
     setDocummentTitle() {
       document.title = this.leading + this.suffixName
     },
-    editHandler(num, flag=true) {
+    editHandler(num, flag = true) {
       this.$set(this.detailForm, `isEdit${num}`, flag)
     },
     delRow(inx) {
       this.listData.splice(inx, 1)
     },
     newRow(obj, inx) {
-      const len = this.listData.filter(v => v.id === obj.id).length
+      const len = this.listData.filter((v) => v.id === obj.id).length
 
-      this.listData.splice(len+inx, 0, {
+      this.listData.splice(len + inx, 0, {
         id: obj.id,
         name: obj.name,
         mark: obj.mark,
@@ -224,15 +227,25 @@ export default {
         behavior: '',
       })
     },
-    tableRowClassName({row, rowIndex}) {
-      if (row.id !== 2) {
-        return 'warning-row';
+    tableRowClassName({ row, rowIndex }) {
+      if (rowIndex == 0) {
+        return 'warning-row'
+      } else if (rowIndex == 1) {
+        return 'warning-row2'
+      } else if (rowIndex == 2) {
+        return 'warning-row3'
       }
-      return '';
+      return ''
     },
     downExcel() {
-      const arr = [this.detailForm.headName1 || this.leading, this.detailForm.headName2 || this.markName, this.detailForm.headName3 || this.finshName, this.detailForm.headName4 || this.scoreName, this.detailForm.headName5 || this.behaviorName]
-      this.downXLSX2(this.listData, this.leading+this.suffixName, arr)
+      const arr = [
+        this.detailForm.headName1 || this.leading,
+        this.detailForm.headName2 || this.markName,
+        this.detailForm.headName3 || this.finshName,
+        this.detailForm.headName4 || this.scoreName,
+        this.detailForm.headName5 || this.behaviorName,
+      ]
+      this.downXLSX2(this.listData, this.leading + this.suffixName, arr)
     },
     setWidth(label) {
       switch (label) {
@@ -251,7 +264,7 @@ export default {
     downXLSX2(list, fileName, columns) {
       // 列标题
       let tableData = '<tr>'
-      columns.forEach(v => {
+      columns.forEach((v) => {
         tableData += `<td>${v}</td>`
       })
       tableData += '</tr>'
@@ -261,30 +274,30 @@ export default {
         tableData += '<tr>'
         for (let it in v) {
           if (it !== 'id') {
-            if (['name', 'mark', 'finsh', ].includes(it)) {
+            if (['name', 'mark', 'finsh'].includes(it)) {
               if (v.id === 1) {
                 if (inx === 0) {
-                  const len = this.listData.filter(ob => ob.id === 1).length
-                  tableData += `<td width=${this.setWidth(it)}  height="66" rowspan=${len}>${ v[it] + '\t'}</td>`
+                  const len = this.listData.filter((ob) => ob.id === 1).length
+                  tableData += `<td width=${this.setWidth(it)}  height="66" rowspan=${len}>${v[it] + '\t'}</td>`
                 }
               } else if (v.id === 2) {
-                let index = this.listData.map(o=>o.id).indexOf(2)
-                
-                if (inx === index) {
-                  const len = this.listData.filter(ob => ob.id === 2).length
-                  tableData += `<td width=${this.setWidth(it)}  height="66" rowspan=${len}>${ v[it] + '\t'}</td>`
-                }
-              } else {
-                let index = this.listData.map(o=>o.id).indexOf(3)
+                let index = this.listData.map((o) => o.id).indexOf(2)
 
                 if (inx === index) {
-                  const len = this.listData.filter(ob => ob.id === 3).length
-                  tableData += `<td width=${this.setWidth(it)}  height="66" rowspan=${len}>${ v[it] + '\t'}</td>`
+                  const len = this.listData.filter((ob) => ob.id === 2).length
+                  tableData += `<td width=${this.setWidth(it)}  height="66" rowspan=${len}>${v[it] + '\t'}</td>`
+                }
+              } else {
+                let index = this.listData.map((o) => o.id).indexOf(3)
+
+                if (inx === index) {
+                  const len = this.listData.filter((ob) => ob.id === 3).length
+                  tableData += `<td width=${this.setWidth(it)}  height="66" rowspan=${len}>${v[it] + '\t'}</td>`
                 }
               }
             } else {
               // 增加 \t 为了不让表格显示科学计数法或者其他格式
-              tableData += `<td width=${this.setWidth(it)} height="66">${ v[it] + '\t'}</td>`
+              tableData += `<td width=${this.setWidth(it)} height="66">${v[it] + '\t'}</td>`
             }
           }
         }
@@ -293,7 +306,7 @@ export default {
 
       // Worksheet名
       let worksheet = 'Sheet1'
-      let uri = 'data:application/vnd.ms-excel;base64,';
+      let uri = 'data:application/vnd.ms-excel;base64,'
 
       // 下载的表格模板数据
       let template = `
@@ -332,7 +345,7 @@ export default {
       const alink = document.createElement('a')
 
       alink.style.display = 'none'
-      alink.download = this.leading + this.suffixName +'.png'
+      alink.download = this.leading + this.suffixName + '.png'
       alink.href = content
 
       document.body.appendChild(alink)
@@ -340,21 +353,21 @@ export default {
       document.body.removeChild(alink)
     },
     changeName(it) {
-      this.listData.forEach(v => {
+      this.listData.forEach((v) => {
         if (v.id === it.id) {
           v.name = it.name
         }
       })
     },
     changeName2(it) {
-      this.listData.forEach(v => {
+      this.listData.forEach((v) => {
         if (v.id === it.id) {
           v.mark = it.mark
         }
       })
     },
     changeName3(it) {
-      this.listData.forEach(v => {
+      this.listData.forEach((v) => {
         if (v.id === it.id) {
           v.finsh = it.finsh
         }
@@ -363,7 +376,7 @@ export default {
     checkDetail() {
       this.dialogVisible = true
 
-      this.listData.forEach(v => {
+      this.listData.forEach((v) => {
         if (v.id === 1) {
           v.name = this.form.name1
           v.mark = this.form.orientation1
@@ -383,7 +396,7 @@ export default {
       this.detailForm.headName5 = this.behaviorName
     },
     submitForm() {
-      this.listData.forEach(v => {
+      this.listData.forEach((v) => {
         if (v.id === 1) {
           this.form.name1 = v.name
           this.form.orientation1 = v.mark
@@ -431,21 +444,14 @@ export default {
       this.isImport = false
     },
     init() {
-      this.minComg = minCM([
-        this.form.orientation1,
-        this.form.customer1,
-        this.form.statistics1,
-      ])
+      this.minComg = minCM([this.form.orientation1, this.form.customer1, this.form.statistics1])
 
       const list = [
         {
           name: this.form.name1,
           total: this.minComg,
           total2: this.form.orientation1,
-          value: this.tranformLCM(
-            this.form.orientation1,
-            this.form.orientation2
-          ),
+          value: this.tranformLCM(this.form.orientation1, this.form.orientation2),
           value2: this.form.orientation2,
         },
         {
@@ -497,7 +503,7 @@ export default {
         title: {
           text: this.leading + this.suffixName,
           top: 'top',
-          right: '12px',
+          left: 'center',
           textStyle: {
             fontSize: 28,
           },
@@ -526,8 +532,8 @@ export default {
           splitLine: { show: false },
         },
         polar: {
-          center: ['55%', '55%'],
-          radius: ['11%', '88%'],
+          center: ['50%', '52%'],
+          radius: ['12%', '89%'],
         },
         tooltip: {
           show: true,
@@ -535,16 +541,16 @@ export default {
             return `${pa.name}<br/>${this.markName}：${pa.data.total2}<br/>${this.finshName}：${pa.data.value2}<br/>`
           },
         },
-        legend: {
-          show: true,
-          icon: 'circle',
-          top: 0,
-          left: 0,
-          orient: 'vertical',
-          itemWidth: 20,
-          itemHeight: 20,
-          data: list.map((v) => v.name),
-        },
+        // legend: {
+        //   show: true,
+        //   icon: 'circle',
+        //   top: 0,
+        //   left: 0,
+        //   orient: 'vertical',
+        //   itemWidth: 20,
+        //   itemHeight: 20,
+        //   data: list.map((v) => v.name),
+        // },
         series,
       }
 
@@ -595,20 +601,22 @@ export default {
       return num2 * this.maxComg
     },
     formatType(type) {
-      if (['application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'].includes(type)) {
+      if (
+        ['application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'].includes(type)
+      ) {
         return true
       } else {
         this.$message.error('只能上传 xlsx、xls 文件格式，请重新上传！')
         return false
       }
     },
-    handleChange(file, fileList){
+    handleChange(file, fileList) {
       if (this.formatType(file.raw.type)) {
         this.fileTemp = file.raw
         this.parseTable(this.fileTemp)
       }
     },
-    handleRemove(file, fileList){
+    handleRemove(file, fileList) {
       this.fileTemp = null
     },
     handleExceed(files, fileList) {
@@ -624,28 +632,28 @@ export default {
 
       reader.onload = (e) => {
         const bytes = new Uint8Array(reader.result)
-        const length = bytes.byteLength;
-        
-        for(let i = 0; i < length; i++) {
-          binary += String.fromCharCode(bytes[i]);
+        const length = bytes.byteLength
+
+        for (let i = 0; i < length; i++) {
+          binary += String.fromCharCode(bytes[i])
         }
-       
+
         // 读取完成的数据
-        const workbook = XLSX.read(binary, { type: 'binary' });
+        const workbook = XLSX.read(binary, { type: 'binary' })
         const sheet = workbook.Sheets[workbook.SheetNames]
         this.setTable(this.transformData(sheet))
       }
-      
-      reader.readAsArrayBuffer(obj);
+
+      reader.readAsArrayBuffer(obj)
     },
     getColInx(str) {
       const arr = str.split(':')
-      const arr1 = arr.map(v => v.slice(0, 1))
+      const arr1 = arr.map((v) => v.slice(0, 1))
       return arr1[1].charCodeAt() - arr1[0].charCodeAt() + 1
     },
     getRowInx(str) {
       const arr = str.split(':')
-      const arr1 = arr.map(v => v.slice(1, 2))
+      const arr1 = arr.map((v) => v.slice(1, 2))
       return arr1[1] - arr1[0] + 1
     },
     transformData(obj) {
@@ -654,16 +662,17 @@ export default {
       const rowinx = this.getRowInx(obj['!ref'])
       const colinx = this.getColInx(obj['!ref'])
 
-      for (let i=1; i<=colinx; i++) {
+      for (let i = 1; i <= colinx; i++) {
         const code = String.fromCharCode(64 + i) // 从 A 开始
 
-        for (let j=1; j<=rowinx; j++) {
+        for (let j = 1; j <= rowinx; j++) {
           const str = code + j
           const k = j - 2
           if (k >= 0) list[k] || (list[k] = {})
 
           if (obj[str]) {
-            if (j === 1) { // 表头
+            if (j === 1) {
+              // 表头
               const na = 'headName' + i
               const na2 = 'isEdit' + i
 
@@ -673,19 +682,19 @@ export default {
               switch (code) {
                 case 'A':
                   list[k].name = obj[str].v
-                  break;
+                  break
                 case 'B':
                   list[k].mark = obj[str].v
-                  break;
+                  break
                 case 'C':
                   list[k].finsh = obj[str].v
-                  break;
+                  break
                 case 'D':
                   list[k].score = obj[str].v
-                break;
+                  break
                 case 'E':
                   list[k].behavior = obj[str].v
-                break;
+                  break
               }
             }
           }
@@ -697,9 +706,9 @@ export default {
         if (v.name) {
           id++
         } else {
-          v.name = list[inx-1].name
-          v.mark = list[inx-1].mark
-          v.finsh = list[inx-1].finsh
+          v.name = list[inx - 1].name
+          v.mark = list[inx - 1].mark
+          v.finsh = list[inx - 1].finsh
         }
 
         v.id = id
@@ -710,12 +719,12 @@ export default {
     setTable({ list, deObj }) {
       let arr = []
 
-      for (let i=0; i<list.length; i++) {
+      for (let i = 0; i < list.length; i++) {
         const it = list[i]
         const len = Object.keys(it).length
 
         if (![3, 6].includes(len)) {
-          this.$message.error(`第${i+1}行数据格式不对，重编辑后重新导入`)
+          this.$message.error(`第${i + 1}行数据格式不对，重编辑后重新导入`)
           break
         }
       }

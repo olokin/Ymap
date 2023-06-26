@@ -45,6 +45,10 @@
         <div id="main"></div>
       </div>
       <div class="flex-box-table">
+        <div class="fix-block box1"></div>
+        <div class="fix-block box2"></div>
+        <div class="fix-block box3"></div>
+
         <el-table
           :data="listData"
           size="small"

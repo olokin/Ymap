@@ -74,7 +74,7 @@ body {
 
     .flex-box {
       display: flex;
-      flex: 1;
+      height: 345px;
       justify-content: center;
       width: 100%;
       min-height: 330px;
@@ -83,10 +83,10 @@ body {
     }
 
     .flex-box-table {
-      height: 222px;
+      flex: 1;
       width: 100%;
       box-sizing: border-box;
-      max-width: 666px;
+      max-width: 654px;
       position: relative;
 
       .fix-block {
@@ -110,6 +110,10 @@ body {
           top: 150px;
           background-color: #ee6666;
         }
+      }
+
+      .table-btns {
+        text-align: center
       }
     }
 
@@ -218,6 +222,7 @@ body {
 
         .head-name {
           padding-left: 6px;
+          font-size: 16px;
         }
       }
     }
@@ -225,9 +230,27 @@ body {
     .el-textarea__inner {
       min-height: 40px !important;
     }
+
+    .el-table__row {
+      input {
+        font-size: 14px;
+      }
+    }
   }
 
   .el-table--enable-row-hover .el-table__body tr:hover>td.el-table__cell {
     background: #fff;
+  }
+}
+
+@media print {
+  .table-btns {
+    display: none;
+  }
+
+  .el-table__header-wrapper {
+    .el-icon-edit {
+      display: none;
+    }
   }
 }

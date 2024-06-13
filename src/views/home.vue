@@ -74,7 +74,7 @@
               <el-input size="mini" v-model="scope.row.name" placeholder="" @blur="changeName(scope.row)"></el-input>
             </template>
           </el-table-column>
-          <el-table-column width="120px">
+          <el-table-column width="105px">
             <template slot="header" slot-scope="scope">
               <el-input
                 size="mini"
@@ -98,7 +98,7 @@
               ></el-input-number>
             </template>
           </el-table-column>
-          <el-table-column width="120px">
+          <el-table-column width="105px">
             <template slot="header" slot-scope="scope">
               <el-input
                 size="mini"
@@ -136,7 +136,7 @@
           </el-table-column>
         </el-table>
 
-        <div style="text-align: center">
+        <div class="table-btns">
           <el-button size="mini" @click="cancel">取消</el-button>
           <el-button size="mini" type="primary" @click="submitForm">确定</el-button>
           <el-button size="mini" type="primary" @click="downExcel">导出Excel</el-button>

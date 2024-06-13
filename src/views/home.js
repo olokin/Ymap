@@ -1,4 +1,6 @@
-import { minCM } from '../utils/index'
+import {
+  minCM
+} from '../utils/index'
 
 export default {
   data() {
@@ -47,7 +49,12 @@ export default {
   },
   computed: {
     objectSpanMethod() {
-      return ({ row, column, rowIndex, columnIndex }) => {
+      return ({
+        row,
+        column,
+        rowIndex,
+        columnIndex
+      }) => {
         if ([0, 1, 2, 5].includes(columnIndex)) {
           if (row.id === 1) {
             const len = this.listData.filter((v) => v.id === 1).length
@@ -176,8 +183,7 @@ export default {
         this.form.customer1 = list3[0].mark
         this.form.customer2 = list3[0].finsh
       } else {
-        this.listData = [
-          {
+        this.listData = [{
             id: 1,
             name: this.form.name1,
             mark: 1,
@@ -227,7 +233,10 @@ export default {
         behavior: '',
       })
     },
-    tableRowClassName({ row, rowIndex }) {
+    tableRowClassName({
+      row,
+      rowIndex
+    }) {
       if (rowIndex == 0) {
         return 'warning-row'
       } else if (rowIndex == 1) {
@@ -341,7 +350,9 @@ export default {
       return window.btoa(unescape(encodeURIComponent(str)))
     },
     downImage() {
-      const content = this.myChart.getDataURL({ backgroundColor: '#fff' })
+      const content = this.myChart.getDataURL({
+        backgroundColor: '#fff'
+      })
       const alink = document.createElement('a')
 
       alink.style.display = 'none'
@@ -446,8 +457,7 @@ export default {
     init() {
       this.minComg = minCM([this.form.orientation1, this.form.customer1, this.form.statistics1])
 
-      const list = [
-        {
+      const list = [{
           name: this.form.name1,
           total: this.minComg,
           total2: this.form.orientation1,
@@ -510,10 +520,18 @@ export default {
         },
         angleAxis: {
           max: maxTotal,
-          axisLine: { show: false },
-          axisTick: { show: false },
-          axisLabel: { show: false },
-          splitLine: { show: false },
+          axisLine: {
+            show: false
+          },
+          axisTick: {
+            show: false
+          },
+          axisLabel: {
+            show: false
+          },
+          splitLine: {
+            show: false
+          },
         },
         radiusAxis: {
           type: 'category',
@@ -527,13 +545,21 @@ export default {
               width: 3,
             },
           },
-          axisTick: { show: false },
-          axisLabel: { show: false },
-          splitLine: { show: false },
+          axisTick: {
+            show: false
+          },
+          axisLabel: {
+            show: false
+          },
+          splitLine: {
+            show: false
+          },
         },
         polar: {
-          center: ['50%', '52%'],
-          radius: ['12%', '89%'],
+          // center: ['50%', '56%'],
+          // radius: ['56%', '8%'],
+          center: ['50%', '56%'],
+          radius: ['76%', '8%'],
         },
         tooltip: {
           show: true,
@@ -559,8 +585,7 @@ export default {
     setColor(params) {
       if (params.value > params.data.total) {
         if (params.seriesIndex === 0) {
-          return new echarts.graphic.LinearGradient(1, 0, 0, 0, [
-            {
+          return new echarts.graphic.LinearGradient(1, 0, 0, 0, [{
               offset: 0,
               color: 'rgba(145,204,117,0.3)',
             },
@@ -570,8 +595,7 @@ export default {
             },
           ])
         } else if (params.seriesIndex === 1) {
-          return new echarts.graphic.LinearGradient(1, 0, 0, 0, [
-            {
+          return new echarts.graphic.LinearGradient(1, 0, 0, 0, [{
               offset: 0,
               color: 'rgba(84,112,198,0.5)',
             },
@@ -581,8 +605,7 @@ export default {
             },
           ])
         } else {
-          return new echarts.graphic.LinearGradient(1, 0, 0, 0, [
-            {
+          return new echarts.graphic.LinearGradient(1, 0, 0, 0, [{
               offset: 0,
               color: 'rgba(238,102,102,0.3)',
             },
@@ -639,7 +662,9 @@ export default {
         }
 
         // 读取完成的数据
-        const workbook = XLSX.read(binary, { type: 'binary' })
+        const workbook = XLSX.read(binary, {
+          type: 'binary'
+        })
         const sheet = workbook.Sheets[workbook.SheetNames]
         this.setTable(this.transformData(sheet))
       }
@@ -714,9 +739,15 @@ export default {
         v.id = id
       })
 
-      return { list: list, deObj: deObj }
+      return {
+        list: list,
+        deObj: deObj
+      }
     },
-    setTable({ list, deObj }) {
+    setTable({
+      list,
+      deObj
+    }) {
       let arr = []
 
       for (let i = 0; i < list.length; i++) {

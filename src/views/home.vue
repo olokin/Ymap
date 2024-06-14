@@ -74,7 +74,7 @@
               <el-input size="mini" v-model="scope.row.name" placeholder="" @blur="changeName(scope.row)"></el-input>
             </template>
           </el-table-column>
-          <el-table-column width="105px">
+          <el-table-column width="110px">
             <template slot="header" slot-scope="scope">
               <el-input
                 size="mini"
@@ -98,7 +98,7 @@
               ></el-input-number>
             </template>
           </el-table-column>
-          <el-table-column width="105px">
+          <el-table-column width="140px">
             <template slot="header" slot-scope="scope">
               <el-input
                 size="mini"

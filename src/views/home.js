@@ -510,14 +510,6 @@ export default {
 
       const option = {
         color: this.barColor,
-        title: {
-          text: this.leading + this.suffixName,
-          top: 'top',
-          left: 'center',
-          textStyle: {
-            fontSize: 28,
-          },
-        },
         angleAxis: {
           max: maxTotal,
           axisLine: {
@@ -556,8 +548,6 @@ export default {
           },
         },
         polar: {
-          // center: ['50%', '56%'],
-          // radius: ['56%', '8%'],
           center: ['50%', '56%'],
           radius: ['76%', '8%'],
         },
